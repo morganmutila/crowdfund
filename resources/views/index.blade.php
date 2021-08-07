@@ -1,4 +1,8 @@
+@section('title', 'Home - Crowdfund')
+
 @extends('layouts.app')
 @section('content')
-	Home page
+	<main class="container my-4">
+		Home page
+	</main>	
 @endsection

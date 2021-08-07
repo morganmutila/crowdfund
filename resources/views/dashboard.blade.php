@@ -1,13 +1,8 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="h4 font-weight-bold">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@section('title', 'Dashboard - Crowdfund')
+@extends('layouts.app')
 
-    <div class="card my-4">
-        <div class="card-body">
-            You're logged in!
-        </div>
-    </div>
-</x-app-layout>
+@section('content')
+    <main class="container my-4">
+        Dashboard
+    </main>    
+@endsection
