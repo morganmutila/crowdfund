@@ -20,8 +20,8 @@
                     </div>
                     <div class="mb-4 d-flex justify-content-between">
                         <div class="form-check">
-                          <input type="checkbox" class="form-check-input" id="dropdownCheck2" name="remember">
-                          <label class="form-check-label" for="dropdownCheck2">Remember me</label>
+                          <input type="checkbox" class="form-check-input" id="rememberMe" name="remember">
+                          <label class="form-check-label" for="rememberMe">Remember me</label>
                         </div>
                         <a class="text-success" href="{{ route('password.request') }}">
                             Forgot password?

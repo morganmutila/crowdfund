@@ -4946,6 +4946,15 @@ module.exports = {
 
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+document.addEventListener("DOMContentLoaded", function () {
+  /////// Prevent closing from click inside dropdown
+  document.querySelectorAll('.dropdown-menu').forEach(function (element) {
+    element.addEventListener('click', function (e) {
+      e.stopPropagation();
+    });
+  });
+});
+
 /***/ }),
 
 /***/ "./resources/js/bootstrap.js":
@@ -4963,11 +4972,9 @@ window._ = __webpack_require__(/*! lodash */ "./node_modules/lodash/lodash.js");
  */
 // Load Popper.js and Bootstrap js
 
-try {
-  window.Popper = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/index.js").default;
+window.Popper = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/index.js").default;
 
-  __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
-} catch (e) {} //Load Axios
+__webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js"); //Load Axios
 
 
 window.axios = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");

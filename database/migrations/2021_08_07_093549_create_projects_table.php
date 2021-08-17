@@ -15,11 +15,10 @@ class CreateProjectsTable extends Migration
     {
         Schema::create('projects', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('slug')->unique();
+            $table->string('title');
             $table->string('location');
             $table->text('description');
-            $table->string('img_path');
+            $table->string('project_image');
             $table->integer('duration');
             $table->foreignId('category_id');
             $table->foreignId('user_id');

@@ -8,10 +8,9 @@ window._ = require('lodash');
  */
 
 // Load Popper.js and Bootstrap js
- try {
-    window.Popper = require('@popperjs/core').default;
-    require('bootstrap');
-} catch (e) {}
+window.Popper = require('@popperjs/core').default;
+require('bootstrap');
+
 
 //Load Axios
 window.axios = require('axios');

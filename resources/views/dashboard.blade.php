@@ -1,4 +1,4 @@
-@section('title', 'Dashboard - Crowdfund')
+@section('title', 'Dashboard | Crowdfund')
 @extends('layouts.app')
 
 @section('content')

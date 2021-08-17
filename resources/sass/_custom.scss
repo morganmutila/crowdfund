@@ -1,40 +1,37 @@
-// /*
-//  * Dropdown Menu Animation for Bootstrap Navbar
-//  * https://startbootstrap.com/snippets/animated-navbar-dropdown
-//  */
+.navbar .megamenu{ 
+	padding: 2rem;
+}
+
+/* Desktop view */
+@media all and (min-width: 992px) {
+	
+	.navbar .has-megamenu {
+		position: static !important;
+	}
+	.navbar .megamenu {
+		left: 0;
+		right: 0; 
+		width: 100%; 
+		margin-top: 0;
+	}
+}	
 
 
-// @keyframes slideIn {
-//   0% {
-//     transform: translateY(1rem);
-//     opacity: 0;
-//   }
-//   100% {
-//     transform:translateY(0rem);
-//     opacity: 1;
-//   }
-//   0% {
-//     transform: translateY(1rem);
-//     opacity: 0;
-//   }
-// }
+/* Mobile view */
+@media (max-width: 991px){
+	.navbar.fixed-top .navbar-collapse,
+	.navbar.sticky-top .navbar-collapse{
+		overflow-y: auto;
+	    max-height: 90vh;
+	    margin-top: 10px;
+	}
+}
 
-// @-webkit-keyframes slideIn {
-//   0% {
-//     -webkit-transform: transform;
-//     -webkit-opacity: 0;
-//   }
-//   100% {
-//     -webkit-transform: translateY(0);
-//     -webkit-opacity: 1;
-//   }
-//   0% {
-//     -webkit-transform: translateY(1rem);
-//     -webkit-opacity: 0;
-//   }
-// }
-
-// .slideIn {
-//   -webkit-animation-name: slideIn;
-//   animation-name: slideIn;
-// }
+.v-menu{
+	li{
+		a{
+			padding: .2rem .5rem;
+			text-decoration: none;
+		}
+	}
+}
