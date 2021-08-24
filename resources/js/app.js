@@ -1,4 +1,5 @@
 require('./bootstrap');
+require('./custome-file-input');
 
 
 document.addEventListener("DOMContentLoaded", function(){

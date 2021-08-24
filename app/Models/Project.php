@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
+Use Illuminate\Support\Carbon;
 
 class Project extends Model
 {
@@ -14,8 +16,9 @@ class Project extends Model
         'location',
         'description',
         'project_image',
+        'category_id',
         'duration',
-        'bugget', 
+        'budget', 
         'amount',
     ];
 
@@ -25,6 +28,38 @@ class Project extends Model
     }
 
     public function category(){
-        return $this->belongsTO(Category::class);
+        return $this->belongsTo(Category::class);
     }
+
+    public function progress(){
+        return ceil((($this->amount / $this->budget) * 100)). '%';
+    }
+
+
+    public function projectDescription(){
+        return Str::limit($this->description, 90);
+    }
+
+    public function projectBudget(){
+        return "K" . number_format($this->budget);
+    }
+
+    public function duration(){
+        $date = Carbon::parse($this->created_at);
+        $now = Carbon::now();
+
+        $diff = $date->diffInDays($now);
+        return $this->duration - $diff;
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->where('published', true);
+    }
+
+    public function scopeDraft($query)
+    {
+        return $query->where('published', false);
+    }
+
 }

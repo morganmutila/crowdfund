@@ -2,23 +2,34 @@
 	padding: 2rem;
 }
 
+
+.project-showcase{
+	&:hover{
+		background: 4px 5px rgba(255, 255, 255, .6);
+		border: 1px solid #c8c8c8;
+	    box-shadow: 0 2px 6px -4px rgb(0 0 0 / 20%), 0 8px 10px -4px rgb(0 0 0 / 14%), 0 8px 12px 4px rgb(0 0 0 / 5%);
+	    z-index: 10;
+	    transition: all .3s ease-in;
+	}
+}
+
 /* Desktop view */
-@media all and (min-width: 992px) {
-	
+@include media-breakpoint-up(lg){
 	.navbar .has-megamenu {
 		position: static !important;
 	}
+
 	.navbar .megamenu {
 		left: 0;
 		right: 0; 
 		width: 100%; 
 		margin-top: 0;
 	}
-}	
+}
 
 
 /* Mobile view */
-@media (max-width: 991px){
+@include media-breakpoint-up(xl){
 	.navbar.fixed-top .navbar-collapse,
 	.navbar.sticky-top .navbar-collapse{
 		overflow-y: auto;
@@ -27,11 +38,96 @@
 	}
 }
 
+
 .v-menu{
+	.title{
+		margin-bottom: 1rem;
+	}
 	li{
 		a{
-			padding: .2rem .5rem;
+			padding: .4rem 0 .4rem 0;
+			color: $gray-700;
+			margin:  .5rem 0 .5rem 0;
 			text-decoration: none;
 		}
 	}
+}
+
+.nav-tabs{
+	.nav-link{
+		font-size: 1.1rem;
+		color: $gray-900;
+		&:hover{
+			border-color: transparent !important;
+			background: transparent !important;
+		}
+	}
+	.active{
+		background: transparent !important;
+		border: none !important;
+		color: $success !important;
+		border-bottom: 4px solid $success !important;
+		&:hover{
+			border-bottom: 4px solid $success !important;
+		}
+	}
+		
+}
+
+.nav-profile-photo{
+	width: 30px;
+	height: 30px;
+	display: inline-block;
+}
+
+.home-category{
+	list-style: none;
+	li{
+		margin-right: 1rem;
+		a{
+			color: $gray-900;
+			font-size: .9rem;
+			text-decoration: none;
+			display: inline-block;
+			padding: .5rem;
+			min-width: 250px;
+			&:hover{
+				background-color: #F2F3F4;
+		    	border-radius: 2px;
+			}
+		}
+	}
+}
+
+.js .custome-file-input {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.custome-file-input + label {
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	cursor: pointer;
+	overflow: hidden;
+	border: 4px dotted #83c5cd;
+	color: #439ca7;
+	background-color: #f0f8f9;
+	opacity: .6;
+}
+
+.no-js .custome-file-input + label {
+	display: none;
+}
+
+.custome-file-input:focus + label,
+.custome-file-input.has-focus + label,
+.custome-file-input + label:hover {
+	outline: 0;
+	outline: -webkit-focus-ring-color auto 0;
+	opacity: 1;
+	background-color: #f1f9f9;
 }

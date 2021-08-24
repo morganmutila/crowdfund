@@ -1,1 +1,1 @@
-Its working User ID: {{ $user}}
+Its working Category ID: {{ $category }}

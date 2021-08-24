@@ -23,7 +23,8 @@ class CreateProjectsTable extends Migration
             $table->foreignId('category_id');
             $table->foreignId('user_id');
             $table->unsignedInteger('budget');
-            $table->unsignedInteger('amount')->nullable();
+            $table->unsignedFloat('amount')->nullable()->default('0.00');
+            $table->boolean('published')->default(false);
             $table->timestamps();
         });
     }

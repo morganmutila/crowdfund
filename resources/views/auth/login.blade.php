@@ -3,9 +3,11 @@
 @section('content')
     <main class="container my-4">
         <h3 class="text-center mb-4 strong lead">Log in</h3>
-        <section class="row justify-content-center align-content-center"> 
-            <div class="col-lg-6">
+        
+        @include('layouts.status-block')
 
+        <section class="row justify-content-center align-content-center"> 
+            <div class="col-6">
                 <form method="POST" action="{{ route('login') }}" class="border p-4">
                     @csrf
                     <div class="mb-3">
