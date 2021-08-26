@@ -1,23 +1,32 @@
 // Body
-$body-color: #000;
-
 $enable-negative-margins:     true;
 $enable-caret:     			  false;
 
 
+$body-color: #000;
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 676px,
+  md: 968px,
+  lg: 1192px,
+  xl: 1400px,
+  xxl: 1600px
+);
+
 // Typography
-$font-family-sans-serif: "Roboto", sans-serif;
+$font-family-sans-serif: Montserrat, sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 // Colors
-$blue: #3490dc;
-$indigo: #6574cd;
-$purple: #9561e2;
-$pink: #f66d9b;
-$red: #e3342f;
-$orange: #f6993f;
-$yellow: #ffed4a;
-$green: #38c172;
-$teal: #4dc0b5;
-$cyan: #6cb2eb;
+// $blue: #3490dc;
+// $indigo: #6574cd;
+// $purple: #9561e2;
+// $pink: #f66d9b;
+// $red: #e3342f;
+// $orange: #f6993f;
+// $yellow: #ffed4a;
+// $green: #38c172;
+// $teal: #4dc0b5;
+// $cyan: #6cb2eb;

@@ -3,23 +3,26 @@
 @extends('layouts.app')
 @section('content')
 
-	@include('layouts.home-carousel')
+	@include('layouts.home-cover')
 
 	<!--Featured projects-->
-	<div class="container mb-5" id="featured-content">
-		<section class="row pb-3">
-			<h2>Featured Projects</h2>
+	<div class="container-lg mb-5" id="featured-content">
+		<section class="row pb-3 d-flex justify-content-between align-items-center">
+			<div class="col-md-10 col-sm-8"><h2>Featured Projects</h2></div>
+			<div class="col-md-2 col-sm-4"><a class="btn btn-success text-white d-inline-block btn-lg w-100" href="{{ url('/discover') }}">See all</a>
+			</div>	
 		</section>
-		<section class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+		<section class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
 			@forelse($projects as $project)
 				<div class="col mb-4"> 
 					<div class="card h-100 project-showcase">
-						<img src="{{ asset('images/cover4.jpg') }}" class="card-img-top img-fluid">
+						<div class="project-thumb" style="background-image: url({{ $project->projectImage() }}); background-color: #444242;">							
+						</div>
 						<div class="card-body d-flex flex-column justify-content-between">						
 							<div class="mb-2">
 								<a href="{{ route('projects.show', ['project' => $project->id]) }}" class="h5 d-inline-block stretched-link text-dark text-decoration-none card-title text-wrap mb-3">{{ $project->title }}</a>
 
-								<div class="card-text text-muted">{{ $project->projectDescription() }}</div>
+								<div class="card-text small text-muted">{{ $project->projectDescription() }}</div>
 							</div>
 							<div>
 								<div class="my-2 text-uppercase fw-bold" style="font-size:.7rem;">{{ $project->category->name }}</div>
@@ -30,8 +33,8 @@
 										<h6 class="m-0 text-muted small">{{ $project->location }}</h6>
 									</div>
 								</div>
-								<div class="progress mb-2" style="height: 7px;background-color: #d4d4d4;">
-								  <div class="progress-bar" role="progressbar" style="width:{{$project->progress() }}; background-color: #36ac9c; border-radius: 7px;"></div>
+								<div class="progress mb-2" style="height: 8px;background-color: #d4d4d4;">
+								  <div class="progress-bar" role="progressbar" style="width:{{$project->progress() }}; background-color: #36ac9c; border-radius: 8px;"></div>
 								</div>
 								<div class="d-flex justify-content-between">							
 									<div class="hstack">
@@ -43,7 +46,7 @@
 										<div class="small">target</div>	
 									</div>
 									<div class="hstack">
-										<div class="fw-bold fw-bold">
+										<div class="fw-bold fw-bold text-end">
 											{{ $project->duration() }}
 										</div>
 										<div class="small">days left</div>
@@ -61,7 +64,7 @@
 
 	<!--Category-->
 	<section class="bg-light mb-5">
-		<div class="container py-4">
+		<div class="container-lg py-4">
 			<section class="row">
 				<div class="col-12">
 					<h2 class="mb-3">Browse by Category</h2>
@@ -80,7 +83,7 @@
 	</section>
 
 	<!--FAQs-->
-	<div class="container mb-5">	
+	<div class="container-lg mb-5">	
 		<section class="row">
 			<div class="col">
 				<h2 class="pb-3 text-md-center">Frequently Asked Questions</h2>
@@ -128,13 +131,13 @@
 	</div>	
 
 	<!--Blog-->
-	<div class="container mb-5">	
+	<div class="container-lg mb-5">	
 		<section class="row">
 			<div class="col-12">
 				<h2 class="pb-3 text-md-center">From Crowdfund Blog</h2>
 			</div>
 			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-				<div class="col">
+				<div class="col mb-md-0 mb-5">
 					<article class="card border-0">
 						<img src="{{ asset('images/cover4.jpg') }}" alt="Blog image" class="card-img-top mb-3">
 						<div class="card-text">
@@ -144,7 +147,7 @@
 						</div>
 					</article>
 				</div>
-				<div class="col">
+				<div class="col mb-md-0 mb-5">
 					<article class="card border-0">
 						<img src="{{ asset('images/cover3.jpg') }}" alt="Blog image" class="card-img-top mb-3">
 						<div class="card-text">
@@ -154,7 +157,7 @@
 						</div>
 					</article>
 				</div>
-				<div class="col">
+				<div class="col mb-md-0 mb-5">
 					<article class="card border-0">
 						<img src="{{ asset('images/cover2.jpg') }}" alt="Blog image" class="card-img-top mb-3">
 						<div class="card-text">

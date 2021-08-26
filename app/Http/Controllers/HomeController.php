@@ -16,6 +16,10 @@ class HomeController extends Controller
                   ->with(['user', 'category'])
                   ->get();
 
+        $slideProjects = Project::orderByDesc('created_at')
+          ->with(['user', 'category'])
+          ->first(); 
+
         $faqs = DB::table('faqs')
                 ->get();
 
@@ -23,9 +27,10 @@ class HomeController extends Controller
 
         return view('index',
         [
-            'projects'   => $projects,
-            'faqs'       => $faqs,
-            'categories' => $categories
+            'projects'      => $projects,
+            'slideProjects' => $slideProjects,
+            'faqs'          => $faqs,
+            'categories'    => $categories
         ]);
     }
 

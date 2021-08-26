@@ -46,4 +46,12 @@ class User extends Authenticatable
     public function projects(){
         return $this->hasMany(Project::class);
     }
+
+    public function avatar(){
+        if(empty($this->avatar)){
+            return asset('images/default.png');
+        }
+
+        return "/storage/avatar/" . $this->avater;
+    }
 }

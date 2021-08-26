@@ -51,12 +51,12 @@
 			<div class="row d-flex py-4 justify-content-between">
 				<div class="col-md-9">
 					<div class="d-inline-block w-50">
-						<img src="{{ asset('images/profile-lg.png') }}" class="img-fluid">
+						<img src="{{ asset('images/default.png') }}" class="img-fluid">
 					</div>
 				</div>					
 				<div class="col-md-3">
 					<div class="d-flex align-items-center mb-3">
-						<img src="{{ asset('images/profile.png') }}" alt="photo" class="rounded-circle" style="width:60px;height:60px;">
+						<img src="{{ asset('images/default.png') }}" alt="photo" class="rounded-circle" style="width:60px;height:60px;">
 						<h3 class="text-muted ms-3 fw-bolder">About me</h3>
 					</div>
 					<div class="d-flex flex-column">

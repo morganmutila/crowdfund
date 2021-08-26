@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 Use Illuminate\Support\Carbon;
+use Image;
 
 class Project extends Model
 {
@@ -35,9 +36,18 @@ class Project extends Model
         return ceil((($this->amount / $this->budget) * 100)). '%';
     }
 
+    public function projectImage(){
+        return "/storage/" . $this->project_image;
+    }
 
-    public function projectDescription(){
-        return Str::limit($this->description, 90);
+    // public function projectImageSm(){
+    //     return  Image::make('/storage/' . $this->project_image)->fit(311, 182);
+    // }
+                
+
+
+    public function projectDescription(int $word_count=90){
+        return Str::limit($this->description, $word_count);
     }
 
     public function projectBudget(){

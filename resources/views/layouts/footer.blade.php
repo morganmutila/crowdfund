@@ -1,6 +1,6 @@
 
 <footer class="bg-light py-5">
-	<div class="container">
+	<div class="container-lg">
 		<section class="row">
 			<div class="col-md-3 v-menu">
 				<h6 class="title">EXPLORE</h6>
@@ -35,12 +35,14 @@
 			</div>
 		</section>
 		<section class="row border-top">
-			<p class="text-end my-3 pt-3">© 2021 Crowdfund, Inc. All Rights Reserved. Made with
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill text-secondary mx-1" viewBox="0 0 16 16">
-	  				<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-				</svg>
-				in Lusaka, Kamwala South
-			</p>
+			<div class="col">
+				<p class="text-md-end text-center my-3 pt-3">© 2021 Crowdfund, Inc. All Rights Reserved. Made with
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill text-secondary mx-1" viewBox="0 0 16 16">
+		  				<path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+					</svg>
+					in Lusaka, Kamwala South
+				</p>
+			</div>	
 		</section>	
 	</div>	
 </footer>

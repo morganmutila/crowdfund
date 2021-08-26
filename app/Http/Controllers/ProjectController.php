@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use App\Models\Project;
 use App\Models\Category;
+use Intervention\Image\Facades\Image;
+
 
 class ProjectController extends Controller
 {
@@ -47,32 +48,39 @@ class ProjectController extends Controller
     {
 
         if(!auth()->user()){
-            $request->session()->flash("status", "You must be logged in to create a project");
-            return redirect()->route('login');
+            return redirect()->route('login')->with("status_warning", "You must be logged in to create a project");
         }
 
         $request->validate([
-            'title'         => 'required|min:5|max:50|string',
+            'title'         => 'required|min:5|max:150|string',
             'location'      => 'required',
             'description'   => 'required',
             'project_image' => 'required|image|mimes:jpeg,png,jpg,svg,webp|max:5048',
             'category'      => 'required|in:' . implode(',', self::$categories),
-            // 'category'      => ['required', Rule::exists('categories', 'id')],
             'duration'      => 'required|integer',
             'budget'        => 'required|numeric'
         ]);
+
+        if($request->hasFile('project_image')){
+            $imagePath = $request->file('project_image')->store('uploads/projects/', 'public');
+            $img = Image::make(public_path('/storage/' .$imagePath))->resize(640, 360, function ($constraint) {
+                $constraint->aspectRatio();
+                $constraint->upsize();
+            });
+            $img->save();
+        }
 
         auth()->user()->projects()->create([
             'title'         => $request->input('title'),
             'location'      => $request->input('location'),
             'description'   => $request->input('description'),
-            'project_image' => $request->file('project_image'),
+            'project_image' => $imagePath,
             'category_id'   => $request->input('category'),
             'duration'      => $request->input('duration'),
             'budget'        => $request->input('budget')
         ]);
 
-        return back()->with('status', 'Project created successfully');
+        return back()->with('status_success', 'Project created successfully');
 
     }
 
@@ -118,6 +126,8 @@ class ProjectController extends Controller
      */
     public function destroy($id)
     {
-        //
+
+        // 1. Delete the project image from the file storage first
+        // 2. Delete the project image from the database
     }
 }

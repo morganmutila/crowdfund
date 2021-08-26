@@ -2,13 +2,13 @@
 @extends('layouts.app')
 @section('content')
     <main class="container my-4">
-        <h3 class="text-center mb-4 strong lead">Log in</h3>
+        <h2 class="text-center mb-4 fw-bolder">Log in</h2>
         
-        @include('layouts.status-block')
+        <x-status/>
 
         <section class="row justify-content-center align-content-center"> 
-            <div class="col-6">
-                <form method="POST" action="{{ route('login') }}" class="border p-4">
+            <div class="col-md-7 col-sm">
+                <form method="POST" action="{{ route('login') }}" class="p-4">
                     @csrf
                     <div class="mb-3">
                         <label for="email" class="form-label">Email</label>

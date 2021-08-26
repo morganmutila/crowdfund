@@ -1,3 +1,6 @@
+.font-menu{
+	font-family: 'Montserrat', "Roboto" !important;
+}
 .navbar .megamenu{ 
 	padding: 2rem;
 }
@@ -6,12 +9,30 @@
 .project-showcase{
 	&:hover{
 		background: 4px 5px rgba(255, 255, 255, .6);
-		border: 1px solid #c8c8c8;
 	    box-shadow: 0 2px 6px -4px rgb(0 0 0 / 20%), 0 8px 10px -4px rgb(0 0 0 / 14%), 0 8px 12px 4px rgb(0 0 0 / 5%);
 	    z-index: 10;
 	    transition: all .3s ease-in;
 	}
+
+	.project-thumb{
+		position: relative;
+	    background-repeat: no-repeat;
+	    background-position: center;
+	    background-size: cover;
+	    border-radius: 3px 3px 0 0;
+	    min-height: 175px;
+	}
 }
+
+#home-cover{
+	position: relative;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-height: 530px;
+    background-size: cover;
+}
+
+
 
 /* Desktop view */
 @include media-breakpoint-up(lg){

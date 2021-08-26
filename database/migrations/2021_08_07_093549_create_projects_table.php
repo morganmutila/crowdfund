@@ -14,7 +14,7 @@ class CreateProjectsTable extends Migration
     public function up()
     {
         Schema::create('projects', function (Blueprint $table) {
-            $table->id();
+            $table->id()->from(10000);
             $table->string('title');
             $table->string('location');
             $table->text('description');
@@ -22,7 +22,7 @@ class CreateProjectsTable extends Migration
             $table->integer('duration');
             $table->foreignId('category_id');
             $table->foreignId('user_id');
-            $table->unsignedInteger('budget');
+            $table->unsignedFloat('budget');
             $table->unsignedFloat('amount')->nullable()->default('0.00');
             $table->boolean('published')->default(false);
             $table->timestamps();

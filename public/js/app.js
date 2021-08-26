@@ -37,11 +37,9 @@ document.addEventListener("DOMContentLoaded", function () {
  */
 // Load Popper.js and Bootstrap js
 window.Popper = __webpack_require__(/*! @popperjs/core */ "./node_modules/@popperjs/core/lib/index.js").default; // Import just what we need
-
-__webpack_require__(/*! bootstrap/js/dist/alert */ "./node_modules/bootstrap/js/dist/alert.js"); //require(bootstrap/js/dist/button');
-
-
-__webpack_require__(/*! bootstrap/js/dist/carousel */ "./node_modules/bootstrap/js/dist/carousel.js");
+//require('bootstrap/js/dist/alert');
+//require(bootstrap/js/dist/button');
+//require('bootstrap/js/dist/carousel');
 
 __webpack_require__(/*! bootstrap/js/dist/collapse */ "./node_modules/bootstrap/js/dist/collapse.js");
 
