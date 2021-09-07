@@ -1,55 +1,53 @@
-@section('title', 'Home | Crowdfund')
-
-@extends('layouts.app')
-@section('content')
+<x-layout title="Home | Crowdfund">
 
 	@include('layouts.home-cover')
 
 	<!--Featured projects-->
 	<div class="container-lg mb-5" id="featured-content">
-		<section class="row pb-3 d-flex justify-content-between align-items-center">
-			<div class="col-md-10 col-sm-8"><h2>Featured Projects</h2></div>
-			<div class="col-md-2 col-sm-4"><a class="btn btn-success text-white d-inline-block btn-lg w-100" href="{{ url('/discover') }}">See all</a>
+		<section class="d-flex flex-wrap justify-content-between align-items-center pt-1 pb-4 mb-4">
+			<h2 class="mb-0 pt-3 me-3">Featured Projects</h2>
+			<div class="ms-auto">
+				<a class="btn btn-success text-white mt-3" href="{{ route('discover') }}">See all</a>
 			</div>	
 		</section>
-		<section class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3">
+		<section class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-3 gb-4">
 			@forelse($projects as $project)
-				<div class="col mb-4"> 
+				<div class="col mb-md-4"> 
 					<div class="card h-100 project-showcase">
 						<div class="project-thumb" style="background-image: url({{ $project->projectImage() }}); background-color: #444242;">							
 						</div>
 						<div class="card-body d-flex flex-column justify-content-between">						
 							<div class="mb-2">
-								<a href="{{ route('projects.show', ['project' => $project->id]) }}" class="h5 d-inline-block stretched-link text-dark text-decoration-none card-title text-wrap mb-3">{{ $project->title }}</a>
+								<a href="{{ route('projects.show', ['project' => $project->id]) }}" class="d-inline-block stretched-link text-dark text-decoration-none card-title text-wrap mb-3">{{ $project->title }}</a>
 
-								<div class="card-text small text-muted">{{ $project->projectDescription() }}</div>
+								<div class="small text-muted d-block mb-3" style="max-height: 2.5rem; overflow: hidden;">{{ $project->projectDescription() }}</div>
 							</div>
 							<div>
-								<div class="my-2 text-uppercase fw-bold" style="font-size:.7rem;">{{ $project->category->name }}</div>
-								<div class="d-flex justify-content-start align-items-center mb-3">
-									<img src="{{ asset('images/profile.png') }}" alt="photo" class="rounded-circle me-2" style="width:32px;height:32px;">				
-									<div class="hstack">
+								<div class="my-2 text-uppercase text-muted fw-bold" style="font-size:.7rem;">{{ $project->category->name }}</div>
+								<div class="d-flex justify-content-start align-items-center mb-2">
+									<img src="{{ asset('images/profile.png') }}" alt="" class="rounded-circle me-2" style="width:34px;height:34px;">				
+									<div class="vstack justify-content-center">
 										<h6 class="m-0">{{ $project->user->name }}</h6>
-										<h6 class="m-0 text-muted small">{{ $project->location }}</h6>
+										<div class="m-0 text-muted small">{{ $project->location }}</div>
 									</div>
 								</div>
 								<div class="progress mb-2" style="height: 8px;background-color: #d4d4d4;">
 								  <div class="progress-bar" role="progressbar" style="width:{{$project->progress() }}; background-color: #36ac9c; border-radius: 8px;"></div>
 								</div>
 								<div class="d-flex justify-content-between">							
-									<div class="hstack">
+									<div class="vstack">
 										<div class="fw-bold">{{ $project->progress() }}</div>
 										<div class="small">funded</div>
 									</div>							
-									<div class="hstack">
+									<div class="vstack text-center">
 										<div class="fw-bolder">{{ $project->projectBudget() }}</div>
 										<div class="small">target</div>	
 									</div>
-									<div class="hstack">
-										<div class="fw-bold fw-bold text-end">
+									<div class="vstack">
+										<div class="fw-bold text-end">
 											{{ $project->duration() }}
 										</div>
-										<div class="small">days left</div>
+										<div class="small text-end">days left</div>
 									</div>
 								</div>
 							</div>	
@@ -86,7 +84,7 @@
 	<div class="container-lg mb-5">	
 		<section class="row">
 			<div class="col">
-				<h2 class="pb-3 text-md-center">Frequently Asked Questions</h2>
+				<h2 class="pb-3">Frequently Asked Questions</h2>
 			</div>
 		</section>	
 		<section class="row">
@@ -131,44 +129,45 @@
 	</div>	
 
 	<!--Blog-->
-	<div class="container-lg mb-5">	
-		<section class="row">
-			<div class="col-12">
-				<h2 class="pb-3 text-md-center">From Crowdfund Blog</h2>
-			</div>
-			<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
-				<div class="col mb-md-0 mb-5">
-					<article class="card border-0">
-						<img src="{{ asset('images/cover4.jpg') }}" alt="Blog image" class="card-img-top mb-3">
-						<div class="card-text">
-							<h3 class="card-title lead">Some title goes here</h3>
-							<div class="text-muted mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptates inventore</div>
-							<a href="card-link" class="text-uppercase fs-6 text-dark text-decoration-none fw-bold">Read More &raquo;</a>
-						</div>
-					</article>
+	<section class="bg-primary py-5">
+		<div class="container-lg mb-5">	
+			<section class="row">
+				<div class="col">
+					<h2 class="pb-3 text-white">From Crowdfund Blog</h2>
 				</div>
-				<div class="col mb-md-0 mb-5">
-					<article class="card border-0">
-						<img src="{{ asset('images/cover3.jpg') }}" alt="Blog image" class="card-img-top mb-3">
-						<div class="card-text">
-							<h3 class="card-title lead">Some title goes here</h3>
-							<div class="text-muted mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptates inventore</div>
-							<a href="card-link" class="text-uppercase fs-6 text-dark text-decoration-none fw-bold">Read More &raquo;</a>
-						</div>
-					</article>
+				<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3">
+					<div class="col mb-md-0 mb-5">
+						<article class="card border-0">
+							<img src="{{ asset('images/cover4.jpg') }}" alt="Blog image" class="card-img-top mb-3">
+							<div class="card-body">
+								<h3 class="card-title lead">Some title goes here</h3>
+								<div class="text-muted mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptates inventore</div>
+								<a href="card-link" class="text-uppercase fs-6 text-dark text-decoration-none fw-bold">Read More &raquo;</a>
+							</div>
+						</article>
+					</div>
+					<div class="col mb-md-0 mb-5">
+						<article class="card border-0">
+							<img src="{{ asset('images/cover3.jpg') }}" alt="Blog image" class="card-img-top mb-3">
+							<div class="card-body">
+								<h3 class="card-title lead">Some title goes here</h3>
+								<div class="text-muted mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptates inventore</div>
+								<a href="card-link" class="text-uppercase fs-6 text-dark text-decoration-none fw-bold">Read More &raquo;</a>
+							</div>
+						</article>
+					</div>
+					<div class="col mb-md-0 mb-5">
+						<article class="card border-0">
+							<img src="{{ asset('images/cover2.jpg') }}" alt="Blog image" class="card-img-top mb-3">
+							<div class="card-body">
+								<h3 class="card-title lead">Some title goes here</h3>
+								<div class="text-muted mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptates inventore</div>
+								<a href="card-link" class="text-uppercase fs-6 text-dark text-decoration-none fw-bold">Read More &raquo;</a>
+							</div>
+						</article>
+					</div>
 				</div>
-				<div class="col mb-md-0 mb-5">
-					<article class="card border-0">
-						<img src="{{ asset('images/cover2.jpg') }}" alt="Blog image" class="card-img-top mb-3">
-						<div class="card-text">
-							<h3 class="card-title lead">Some title goes here</h3>
-							<div class="text-muted mb-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Commodi voluptates inventore</div>
-							<a href="card-link" class="text-uppercase fs-6 text-dark text-decoration-none fw-bold">Read More &raquo;</a>
-						</div>
-					</article>
-				</div>
-			</div>
-		</section>
-	</div>
-@endsection
-
+			</section>
+		</div>
+	</section>
+</x-layout>

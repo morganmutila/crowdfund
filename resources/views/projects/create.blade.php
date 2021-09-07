@@ -1,10 +1,7 @@
-@section('title', 'Create Project | Crowdfund')
+<x-layout title='Create Project | Crowdfund'>
 
-@extends('layouts.app')
-
-@section('content')
 	<form method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data">
-		<section class="bg-light mb-4 mt-n3">
+		<section class="bg-light mb-4">
 			<div class="container py-4">	
 				<section class="row">
 					<div class="col-12 d-flex justify-content-between align-items-center">
@@ -13,8 +10,8 @@
 							<li class="breadcrumb-item active">Create</li>
 						</ul>
 						<div class="hstack float-end">
-							<a class="btn btn-outline-secondary fw-bold ms-2 text-uppercase" href="{{ url('/') }}">Cancel</a>
-							<button class="btn btn-outline-secondary fw-bold ms-2 text-uppercase" type="submit" id="createProjectForm">Submit Project</button>
+							<a class="btn btn-outline-secondary py-2 px-4 text-capitalize" href="{{ url('/') }}">Back</a>
+							<button class="btn btn-success fw-bold py-2 px-4 text-white ms-2 text-capitalize" type="submit">Save Project</button>
 						</div>
 					</div>
 				</section>		
@@ -83,8 +80,8 @@
 							@error('category') <div class="text-danger">{{ $message }} </div> @enderror
 						</div>
 
-						<div class="row mb-5 d-flex justify-content-between">
-							<div class="col-md-6 flex-md-grow-1">
+						<div class="mb-5 justify-content-between align-items-stretch">
+							<div class="col-auto flex-md-grow-1 h-100">
 							    <label for="ProjectDuration" class="form-label fw-bold fs-6">Duration <span class="text-danger">*</span></label>
 							    <p class="small text-muted">Describe how long the project will last.</p>
 							    <div class="input-group w-100">
@@ -94,7 +91,7 @@
 							    @error('duration') <div class="text-danger">{{ $message }} </div> @enderror
 							</div>
 
-		    				<div class="col-md-6">
+		    				<div class="col-auto h-100">
 							    <label for="ProjectBudget" class="form-label fw-bold fs-6">Budget <span class="text-danger">*</span></label>
 							    <p class="small text-muted">How much you need for the project.</p>
 							    <div class="input-group w-100">
@@ -106,13 +103,13 @@
 						</div>	
 
 						<div class="hstack float-end">
-							<a class="btn btn-link fw-bold text-secondary text-decoration-none text-uppercase" href="{{ url('/') }}">Cancel</a>
-							<button class="btn btn-success fw-bold text-white ms-2 text-uppercase" type="submit">Save Project</button>
+							<a class="btn btn-outline-secondary py-3 px-4 text-capitalize" href="{{ url('/') }}">Back</a>
+							<button class="btn btn-success fw-bold py-3 px-4 text-white ms-2 text-capitalize" type="submit">Save Project</button>
 						</div>	
 
 				</div>	
 			</section>
 		</div>	
 	</form>	
-@endsection
 
+</x-layout>

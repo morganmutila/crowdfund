@@ -1,3 +1,7 @@
+body{
+	font-weight: $font-weight-normal;
+}
+
 .font-menu{
 	font-family: 'Montserrat', "Roboto" !important;
 }
@@ -32,32 +36,6 @@
     background-size: cover;
 }
 
-
-
-/* Desktop view */
-@include media-breakpoint-up(lg){
-	.navbar .has-megamenu {
-		position: static !important;
-	}
-
-	.navbar .megamenu {
-		left: 0;
-		right: 0; 
-		width: 100%; 
-		margin-top: 0;
-	}
-}
-
-
-/* Mobile view */
-@include media-breakpoint-up(xl){
-	.navbar.fixed-top .navbar-collapse,
-	.navbar.sticky-top .navbar-collapse{
-		overflow-y: auto;
-	    max-height: 90vh;
-	    margin-top: 10px;
-	}
-}
 
 
 .v-menu{

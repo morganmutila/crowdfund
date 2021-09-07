@@ -1,12 +1,16 @@
-@section('title', 'Forgot Password | Crowfund')
-@extends('layouts.app')
+<x-layout title='Forgot Password | Crowfund' bg_color='red'>
 
-@section('content')
+    <nav class="navbar navbar-expand navbar-light">
+        <div class="container-fluid">
+            <a href="/" class="navbar-brand ps-4"><img src="{{ asset('images/logo.png') }}" class="img-fluid w-75" alt="CF"></a>
+        </div>
+    </nav>
+
     @if(session()->has('status'))
-        <div class="alert alert-info alert-dismissible fade show mt-n3">
+        <div class="alert alert-info">
             <div class="container-fluid">
                 <div class="row justify-content-center">
-                    <div class="col-9">
+                    <div class="col-md-9">
                         <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
                             <symbol id="info-fill" fill="currentColor" viewBox="0 0 16 16">
                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16zm.93-9.412-1 4.705c-.07.34.029.533.304.533.194 0 .487-.07.686-.246l-.088.416c-.287.346-.92.598-1.465.598-.703 0-1.002-.422-.808-1.319l.738-3.468c.064-.293.006-.399-.287-.47l-.451-.081.082-.381 2.29-.287zM8 5.5a1 1 0 1 1 0-2 1 1 0 0 1 0 2z"/>
@@ -14,7 +18,6 @@
                         </svg>
                         <svg class="bi flex-shrink-0 me-2" width="20" height="20" role="img" aria-label="Info:"><use xlink:href="#info-fill"/></svg>
                         <span class="text-dark fs-5 align-middle">{{ session()->get('status') }}
-                        <button type="button" class="btn-close btn-sm" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                 </div>    
             </div>
@@ -22,25 +25,31 @@
     @endif  
     <main class="container my-4">
         <section class="row justify-content-center align-items-center flex-column"> 
-            <div class="col-lg-5"> 
-                <div class="card">
-                <h5 class="card-header fw-bold">Forgot Password</h5>
-                <div class="card-body">
-                    <p class="card-text">Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.</p>
+            <div class="col-md-6 col-sm-8"> 
+                <div class="card border-0 shadow p-4">
+                    <div class="d-flex align-items-center justify-content-between mb-2">
+                        <h4 class="my-4 fw-bolder">Password Reset</h4>
+                        <div class="ms-auto"><a class="text-success" href="{{ route('login') }}">Back to login</a>
+                        </div>
+                    </div> 
+
+                    <p class="card-text text-muted">Enter your email, and we’ll send you instructions on how to reset your password.</p>
                     <form method="POST" action="{{ route('password.email') }}">
                         @csrf
-                        <div class="mb-4">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control bg-light form-control-lg @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}">
+                        <div class="form-floating mb-4">
+                            <input type="email" class="form-control bg-light @error('email') is-invalid @enderror" id="email" name="email" value="{{ old('email') }}" placeholder="Email" style="height: calc(3.2rem + 2px);line-height: 1;">
                             @error('email')<div class="invalid-feedback">{{ $message }}</div>@enderror
+                            <label for="email" class="form-label">Email</label>
+
                         </div>
-                        <div class="mb-4 d-grid">
-                            <button type="submit" class="btn btn-success btn-block text-white rounded-pill btn-lg">Reset Password</button>
+                        <div class="mb-4">
+                            <button type="submit" class="btn btn-success w-100 text-white rounded btn-lg fw-bold">Send password reset link</button>
                         </div> 
                     </form> 
-                    <p class="card-text">Having problems? Please try again later, or <a href="#" class="card-link">contact support.</a></p>
+                    <p class="card-text small">Having problems? Please try again later, or <a href="#" class="card-link">contact support.</a></p>
                 </div>    
             </div>
         </section>   
     </main>       
-@endsection
+
+</x-layout>

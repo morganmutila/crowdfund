@@ -24,6 +24,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        view()->composer('layouts.navigation', function ($view)
+        {
+            $view->with('categories', \App\Models\Category::all());
+        });
+
+
+        view()->composer('layouts.home-navigation', function ($view)
+        {
+            $view->with('categories', \App\Models\Category::all());
+        });
+
+
         Model::preventLazyLoading(! app()->isProduction());
     }
 }

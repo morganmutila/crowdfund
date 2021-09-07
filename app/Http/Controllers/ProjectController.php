@@ -17,7 +17,7 @@ class ProjectController extends Controller
     public function __construct(Category $categories){
         $this->middleware('auth')->except(['create', 'store']);
         $categories = $categories::all()->pluck('id', 'name')->toArray();
-        self::$categories = $categories;
+        static::$categories = $categories;
     }
 
 
@@ -35,7 +35,7 @@ class ProjectController extends Controller
      */
     public function create()
     {   
-        return view('projects.create', ['categories' => self::$categories]);
+        return view('projects.create', ['categories' => static::$categories]);
     }
 
     /**
