@@ -9,7 +9,6 @@ body{
 	padding: 2rem;
 }
 
-
 .project-showcase{
 	&:hover{
 		background: 4px 5px rgba(255, 255, 255, .6);
@@ -43,6 +42,8 @@ body{
 		margin-bottom: 1rem;
 	}
 	li{
+		margin-top: .6rem;
+		margin-bottom: .6rem;
 		a{
 			padding: .4rem 0 .4rem 0;
 			color: $gray-700;
@@ -82,17 +83,23 @@ body{
 .home-category{
 	list-style: none;
 	li{
+		&.active{
+			background: lighten($primary, 45%);
+			border-radius: 5px;
+			font-weight: bolder;
+		}
 		margin-right: 1rem;
+
 		a{
 			color: $gray-900;
 			font-size: .9rem;
+			border-radius: 5px;
 			text-decoration: none;
 			display: inline-block;
 			padding: .5rem;
 			min-width: 250px;
 			&:hover{
 				background-color: #F2F3F4;
-		    	border-radius: 2px;
 			}
 		}
 	}

@@ -9,13 +9,22 @@ use App\Models\Project;
 class PageController extends Controller
 {
     public function discover($category = null){
-        if($category != null){
-            $projects = Project::where('category_id', $category)->latest()->get();
+        $categories = Category::all();
+        //$projects = Project::where('category_id', $category)->latest()->get();
+
+        $projects = Project::latest()->with('user', 'category');
+
+        if($category = request('category')){
+
+            $category = Category::filterStripCategory($category);
+
+            $projects = $projects->where('category_id', Category::whereName($category)->pluck('id')->first());
         }
 
-        $projects = Project::orderBy('created_at')->get();
+        $projects = $projects->get();
 
-        return view('discover', compact('category'));
+        return view('discover', compact('categories', 'projects'));
+
     }
 
     public function noPage404(){

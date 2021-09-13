@@ -1,7 +1,7 @@
 <x-layout title='Create Project | Crowdfund'>
 
 	<form method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data">
-		<section class="bg-light mb-4">
+		<section class="bg-light mb-4 d-none d-md-block">
 			<div class="container py-4">	
 				<section class="row">
 					<div class="col-12 d-flex justify-content-between align-items-center">
@@ -20,12 +20,12 @@
 
 		<div class="container mb-4">
 			<x-status/>
-			<section class="row pb-3">
+			<section class="row pb-3 mt-md-0 mt-4">
 				<h3 class="fw-bolder">Create a Project</h3>	
 			</section>
 
 			<section class="row">
-				<div class="col-6">
+				<div class="col-md-6">
 									
 						@csrf	
 

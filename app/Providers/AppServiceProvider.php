@@ -35,6 +35,11 @@ class AppServiceProvider extends ServiceProvider
             $view->with('categories', \App\Models\Category::all());
         });
 
+        view()->composer('discover', function ($view)
+        {
+            $view->with('categories', \App\Models\Category::all());
+        });
+
 
         Model::preventLazyLoading(! app()->isProduction());
     }

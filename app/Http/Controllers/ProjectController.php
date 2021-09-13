@@ -15,9 +15,8 @@ class ProjectController extends Controller
     protected static $categories;
 
     public function __construct(Category $categories){
-        $this->middleware('auth')->except(['create', 'store']);
-        $categories = $categories::all()->pluck('id', 'name')->toArray();
-        static::$categories = $categories;
+        $this->middleware('auth')->except(['create', 'store', 'show']);
+        static::$categories =  $categories::all()->pluck('id', 'name')->toArray();
     }
 
 
@@ -47,13 +46,13 @@ class ProjectController extends Controller
     public function store(Request $request)
     {
 
-        if(!auth()->user()){
+        if(!auth()->check()){
             return redirect()->route('login')->with("status_warning", "You must be logged in to create a project");
         }
 
         $request->validate([
             'title'         => 'required|min:5|max:150|string',
-            'location'      => 'required',
+            'location'      => 'required|max:150',
             'description'   => 'required',
             'project_image' => 'required|image|mimes:jpeg,png,jpg,svg,webp|max:5048',
             'category'      => 'required|in:' . implode(',', self::$categories),
@@ -124,9 +123,9 @@ class ProjectController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Project $project)
     {
-
+        $project->delete();
         // 1. Delete the project image from the file storage first
         // 2. Delete the project image from the database
     }

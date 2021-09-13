@@ -18,6 +18,7 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
         'password',
         'avater'
@@ -42,9 +43,30 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function getRouteKeyName()
+    {
+        return 'username';
+    }
 
     public function projects(){
         return $this->hasMany(Project::class);
+    }
+
+           
+    //Genrate username
+    public static function generateUsername(string $username=""){
+        $fname = $username[0];
+        $lname = substr($username, strpos($username, " ") + 1);    
+        $username = strtolower($fname . $lname);   
+        
+
+        $i = 0;
+        while(static::whereUsername($username)->exists())
+        {
+            $i++;
+            $username = strtolower($fname . $lname) . $i;
+        }
+        return $username;
     }
 
     public function avatar(){

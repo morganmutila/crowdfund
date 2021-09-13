@@ -23,6 +23,16 @@ class Project extends Model
         'amount',
     ];
 
+    protected $casts = [
+        'title'         => 'string',
+        'location'      => 'string',
+        'description'   => 'string',
+        'project_image' => 'string',
+        'duration'      => 'integer',
+        'budget'        => 'decimal:8',
+        'amount'        => 'decimal:8',
+    ];
+
 
     public function user(){
         return $this->belongsTo(User::class);

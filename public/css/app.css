@@ -10402,6 +10402,10 @@ body {
 .v-menu .title {
   margin-bottom: 1rem;
 }
+.v-menu li {
+  margin-top: 0.6rem;
+  margin-bottom: 0.6rem;
+}
 .v-menu li a {
   padding: 0.4rem 0 0.4rem 0;
   color: #495057;
@@ -10439,9 +10443,15 @@ body {
 .home-category li {
   margin-right: 1rem;
 }
+.home-category li.active {
+  background: #dbffee;
+  border-radius: 5px;
+  font-weight: bolder;
+}
 .home-category li a {
   color: #212529;
   font-size: 0.9rem;
+  border-radius: 5px;
   text-decoration: none;
   display: inline-block;
   padding: 0.5rem;
@@ -10449,7 +10459,6 @@ body {
 }
 .home-category li a:hover {
   background-color: #F2F3F4;
-  border-radius: 2px;
 }
 
 .js .custome-file-input {

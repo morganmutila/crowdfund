@@ -3,7 +3,7 @@
         @includeWhen(request()->routeIs('home'), 'layouts.home-navigation')
         <div class="container-lg mt-5 d-flex align-items-center text-white justify-content-start">
             <div class="col-md-6">
-                <h1 class="display-5 fw-bolder mb-5">Where great ideas are funded.</h1>
+                <h1 class="display-3 fw-bolder mb-5">Crowdfund<br>where great ideas are funded.</h1>
                 <a class="btn bg-success btn-success bg-opacity-75 text-opacity-75 text-white btn-lg py-2 fs-4 px-5" href="{{ route('projects.create') }}">Start a project</a>
             </div>
         </div>
