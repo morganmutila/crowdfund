@@ -26,7 +26,7 @@
                 @auth
                     <li class="nav-item dropdown">
                         <a href="#" class="nav-link text-dark dropdown-toggle fw-bold" data-bs-toggle="dropdown">
-                            <img src="https://i.pravatar.cc/40?u={{ Auth::user()->id }}" alt="Auth::user()->name" class="rounded-circle my-n4 me-2" style="width:40px;height:40px;">
+                            <img src="https://i.pravatar.cc/40?u={{ Auth::user()->id }}" alt="{{ Auth::user()->name }}" class="rounded-circle my-n4 me-2" style="width:40px;height:40px;">
                         </a>                           
                         <ul class="dropdown-menu dropdown-menu-end shadow border-light" style="width:200px;top:48px">
                             <li><a class="dropdown-item py-2" href="{{ route('user-projects', ['user' => Auth::user()->id]) }}">My projects</a></li>

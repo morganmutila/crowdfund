@@ -12,10 +12,10 @@ class ProjectController extends Controller
 {
 
     // get all the categories and store them here
-    protected static $categories;
+    private static $categories;
 
     public function __construct(Category $categories){
-        $this->middleware('auth')->except(['create', 'store', 'show']);
+        $this->middleware('auth')->except(['create','store', 'show']);
         static::$categories =  $categories::all()->pluck('id', 'name')->toArray();
     }
 
@@ -47,21 +47,23 @@ class ProjectController extends Controller
     {
 
         if(!auth()->check()){
-            return redirect()->route('login')->with("status_warning", "You must be logged in to create a project");
+
+            return redirect()->guest(route('login'))
+                             ->with("status_warning", "You must be logged in to create a project");
         }
 
         $request->validate([
             'title'         => 'required|min:5|max:150|string',
             'location'      => 'required|max:150',
             'description'   => 'required',
-            'project_image' => 'required|image|mimes:jpeg,png,jpg,svg,webp|max:5048',
+            'image'         => 'required|image|mimes:jpeg,png,jpg,svg,webp|max:5048',
             'category'      => 'required|in:' . implode(',', self::$categories),
             'duration'      => 'required|integer|max:100|min:1',
             'budget'        => 'required|numeric'
         ]);
 
-        if($request->hasFile('project_image')){
-            $imagePath = $request->file('project_image')->store('uploads/projects/', 'public');
+        if($request->hasFile('image')){
+            $imagePath = $request->file('image')->store('uploads/projects/', 'public');
             $img = Image::make(public_path('/storage/' .$imagePath))->resize(640, 360, function ($constraint) {
                 $constraint->aspectRatio();
                 $constraint->upsize();
@@ -69,17 +71,22 @@ class ProjectController extends Controller
             $img->save();
         }
 
-        auth()->user()->projects()->create([
-            'title'         => $request->input('title'),
-            'location'      => $request->input('location'),
-            'description'   => $request->input('description'),
-            'project_image' => $imagePath,
-            'category_id'   => $request->input('category'),
-            'duration'      => $request->input('duration'),
-            'budget'        => $request->input('budget')
-        ]);
+        try{
+            auth()->user()->projects()->create([
+                'title'         => $request->input('title'),
+                'location'      => $request->input('location'),
+                'description'   => $request->input('description'),
+                'image'         => $imagePath,
+                'category_id'   => $request->input('category'),
+                'duration'      => $request->input('duration'),
+                'budget'        => $request->input('budget')
+            ]);
 
-        return back()->with('status_success', 'Project created successfully');
+            return back()->with('status_success', 'Project created successfully');
+        }
+        catch(\Exception $e){
+            return back()->with('status_fail', $e->getMessage());
+        }    
 
     }
 

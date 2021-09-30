@@ -13,6 +13,13 @@
 
         
         <x-status/>
+
+        @error('login_failed')
+            <div class="alert alert-danger">
+                {{ $message }}
+            </div>                 
+        @endif  
+
         <section class="row justify-content-center align-content-center">
             <div class="col-md-5 col-sm-8 mt-5">
             <div class="card px-4 border-0 shadow">
@@ -37,7 +44,7 @@
                         </div>
                     </div>
                     <div class="mb-4">
-                        <button type="submit" class="mb-3 w-100 btn btn-success fw-bold btn-block rounded btn-lg">Log in</button>
+                        <button type="submit" class="mb-3 w-100 btn btn-success text-white fw-bold btn-block rounded btn-lg">Log in</button>
 
                         <a class="text-success fw-bolder text-decoration-none" href="{{ route('password.request') }}">
                             Forgot password?

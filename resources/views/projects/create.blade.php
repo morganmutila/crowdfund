@@ -54,7 +54,7 @@
 						  	<div class="form-label fw-bold fs-6">Project Image <span class="text-danger">*</span></div>
 						  	<p class="small text-muted">Upload a square image that represents your project. 640 x 640 recommended resolution, 220 x 220 minimum resolution.</p>
 						  	
-						  	<input class="custome-file-input" type="file" id="ProjectImage" name="project_image">
+						  	<input class="custome-file-input" type="file" id="ProjectImage" name="image">
 						  	<label for="ProjectImage" class="text-center p-4 w-100 rounded-lg d-inline-block">
 						  		<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
 								  <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
@@ -63,7 +63,7 @@
 								<span class="my-2 text-lead d-block fw-bolder">Click to add a project picture</span>
 								<span class="text-muted d-block">JPG, PNG, SVG - 5MB file limit</span>
 							</label>
-						  	@error('project_image') <div class="text-danger">{{ $message }} </div> @enderror
+						  	@error('image') <div class="text-danger">{{ $message }} </div> @enderror
 						</div>
 
 						<div class="mb-4">

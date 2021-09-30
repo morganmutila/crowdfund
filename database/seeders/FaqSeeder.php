@@ -40,6 +40,5 @@ class FaqSeeder extends Seeder
             'answer'   => 'To be called the greatest is the best thing ever my friend, to be important to people',
         ]);
 
-
     }
 }

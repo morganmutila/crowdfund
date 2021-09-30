@@ -9,15 +9,18 @@ Use Illuminate\Support\Carbon;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Image;
 
+
 class Project extends Model
 {
     use HasFactory, softDeletes;
 
-    // Always lazy load with these relationship
+
+    // Always lazy load with these relationships
     protected $with = ['user', 'category'];
 
     protected $fillable = [
         'title',
+        'slug',
         'location',
         'description',
         'image',
@@ -29,6 +32,7 @@ class Project extends Model
 
     protected $casts = [
         'title'         => 'string',
+        'slug'          => 'string',
         'location'      => 'string',
         'description'   => 'string',
         'image'         => 'string',
@@ -42,12 +46,41 @@ class Project extends Model
     const STATUS_APPROVED   = 2;
     const STATUS_REJECTED   = 3;
 
-    public function owner(): belongsTo{
+
+    // Change from using $project-> to $project->slug
+    public function getRouteKeyName(){
+        return 'slug';
+    }
+
+    // Boot method overide
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($project) {
+            $project->update(['slug' => $project->title]);
+        });
+    }
+
+
+    // table relationships
+
+    public function user(){
         return $this->belongsTo(User::class);
     }
 
     public function category(){
         return $this->belongsTo(Category::class);
+    }
+
+
+    ///Accessors and Mutators
+
+    public function setSlugAttribute($value)
+    {
+        $slug = Str::of(Str::slug($value))->prepend("{$this->id}-");
+
+        $this->attributes['slug'] = $slug;
     }
 
     public function getProgressAttribute(){
@@ -62,10 +95,6 @@ class Project extends Model
         return Str::of($value)->title();
     }
 
-    public function projectDescription(int $word_count=90){
-        return Str::limit($this->description, $word_count);
-    }
-
     public function getBudgetAttribute(){
         return Str::of(number_format($this->attributes['budget']))->prepend('K');
     }
@@ -73,6 +102,14 @@ class Project extends Model
 
     public function getDurationAttribute($value){
         return $value - Carbon::parse($this->created_at)->diffInDays(now());
+    }
+
+
+
+    // Custom defined functions
+
+    public function projectDescription(int $word_count=90){
+        return Str::limit($this->description, $word_count);
     }
 
 }

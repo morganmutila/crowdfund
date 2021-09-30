@@ -6,7 +6,7 @@
 		</div>
 		<div class="card-body d-flex flex-column justify-content-between">						
 			<div class="mb-2">
-				<a href="{{ route('projects.show', $project) }}" class="d-inline-block text-dark text-decoration-none card-title text-wrap mb-3 stretched-link">{{ $project->title }}</a>
+				<a href="\projects\{{ $project->slug }}" class="d-inline-block text-dark text-decoration-none card-title text-wrap mb-3 stretched-link">{{ $project->title }}</a>
 
 				<div class="small text-muted d-block mb-2" style="max-height: 2.5rem; overflow: hidden;">{{ $project->projectDescription() }}</div>
 			</div>
