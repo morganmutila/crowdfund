@@ -32,7 +32,7 @@
 
                         <div class="form-floating mb-3 position-relative">
                             <input type="password" class="form-control bg-light form-control-lg @error('password') is-invalid @enderror" id="password" name="password"  placeholder="Create Password" style="height: calc(3.2rem + 2px);line-height: 1;">
-                            <span class="position-absolute small text-primary togglePassword" style="right: 4%; top: 30%;cursor: pointer;">Show</span>
+                            <span class="position-absolute small fw-bold text-primary togglePassword" style="right: 4%; top: 30%;cursor: pointer;">Show</span>
                             <label for="password"  class="form-label">Create Password</label>
                             @error('password')<div class="invalid-feedback">{{ $message }}</div>@enderror
                         </div>

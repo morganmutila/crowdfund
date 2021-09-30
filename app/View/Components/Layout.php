@@ -13,12 +13,12 @@ class Layout extends Component
      */
 
     public $title;
-    public $bg_color;
+    public $bgColor;
 
-    public function __construct($title = 'Crowdfund', $bg_color="#fff")
+    public function __construct($title = 'Crowdfund - Where great ideas are funded', $bgColor = 'bg-white')
     {
         $this->title = $title;
-        $this->bg_color = $bg_color;
+        $this->bgColor = $bgColor;
     }
 
     /**

@@ -18,7 +18,7 @@
             </script>
         @endif    
     </head>
-    <body class="{{ $bg_color }}">
+    <body class="{{ $bgColor }}">
         @includeUnless(request()->routeIs(['login', 'signup', 'password.request', 'home']), 'layouts.navigation')
 
         <!-- Page Content -->

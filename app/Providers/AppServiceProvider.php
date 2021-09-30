@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\View;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,23 +25,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        view()->composer('layouts.navigation', function ($view)
+
+        View::creator(['layouts.home-navigation', 'discover', 'layouts.navigation'], function ($view)
         {
             $view->with('categories', \App\Models\Category::all());
         });
 
 
-        view()->composer('layouts.home-navigation', function ($view)
-        {
-            $view->with('categories', \App\Models\Category::all());
-        });
-
-        view()->composer('discover', function ($view)
-        {
-            $view->with('categories', \App\Models\Category::all());
-        });
-
-
-        Model::preventLazyLoading(! app()->isProduction());
+        Model::preventLazyLoading(!app()->isProduction());
     }
 }

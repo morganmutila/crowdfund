@@ -15,7 +15,7 @@ require __DIR__.'/auth.php';
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
 
-Route::get('/discover/{category:slug?}', [PageController::class, 'discover'])->name('discover');
+Route::get('/discover/{category?}', [PageController::class, 'discover'])->name('discover');
 Route::get('/blog', [PageController::class, 'blog'])->name('blog');
 Route::get('/dashboard', DashboardController::class)->name('dashboard');
 

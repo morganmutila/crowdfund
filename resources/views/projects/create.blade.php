@@ -1,7 +1,7 @@
 <x-layout title='Create Project | Crowdfund'>
 
 	<form method="POST" action="{{ route('projects.store') }}" enctype="multipart/form-data">
-		<section class="bg-light mb-4 d-none d-md-block">
+		<section class="mb-4 d-none d-md-block">
 			<div class="container py-4">	
 				<section class="row">
 					<div class="col-12 d-flex justify-content-between align-items-center">
@@ -10,7 +10,7 @@
 							<li class="breadcrumb-item active">Create</li>
 						</ul>
 						<div class="hstack float-end">
-							<a class="btn btn-outline-secondary py-2 px-4 text-capitalize" href="{{ url('/') }}">Back</a>
+							<a class="btn btn-light py-2 px-4 text-capitalize" href="{{ url('/') }}">Back</a>
 							<button class="btn btn-success fw-bold py-2 px-4 text-white ms-2 text-capitalize" type="submit">Save Project</button>
 						</div>
 					</div>
@@ -103,7 +103,7 @@
 						</div>	
 
 						<div class="hstack float-end">
-							<a class="btn btn-outline-secondary py-3 px-4 text-capitalize" href="{{ url('/') }}">Back</a>
+							<a class="btn btn-light py-3 px-4 text-capitalize" href="{{ url('/') }}">Back</a>
 							<button class="btn btn-success fw-bold py-3 px-4 text-white ms-2 text-capitalize" type="submit">Save Project</button>
 						</div>	
 

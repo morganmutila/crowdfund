@@ -16,16 +16,19 @@ class CreateProjectsTable extends Migration
         Schema::create('projects', function (Blueprint $table) {
             $table->id()->from(100000);
             $table->string('title');
+            $table->string('slug')->nullable();
             $table->string('location');
             $table->text('description');
-            $table->string('project_image');
-            $table->integer('duration');
-            $table->foreignId('category_id');
-            $table->foreignId('user_id');
-            $table->unsignedFloat('budget');
-            $table->unsignedFloat('amount')->nullable()->default('0.00');
+            $table->string('image');
+            $table->unsignedInteger('duration');
+            $table->foreignId('category_id')->constrained();
+            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
+            $table->unsignedInteger('budget');
+            $table->unsignedInteger('amount')->default(0);
             $table->boolean('published')->default(false);
+            $table->unsignedInteger('status')->default(1);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

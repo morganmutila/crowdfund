@@ -14,6 +14,7 @@ class HomeController extends Controller
 
         $projects = Project::orderByDesc('created_at')
                   ->with(['user', 'category'])
+                  ->take(6)
                   ->get();
 
         $slideProjects = Project::orderByDesc('created_at')

@@ -8,22 +8,20 @@ use App\Models\Project;
 
 class PageController extends Controller
 {
-    public function discover($category = null){
-        $categories = Category::all();
-        //$projects = Project::where('category_id', $category)->latest()->get();
+    public function discover(Category $category = null){
 
-        $projects = Project::latest()->with('user', 'category');
+        if($category){
 
-        if($category = request('category')){
 
-            $category = Category::filterStripCategory($category);
+            $projects = $category->projects;
 
-            $projects = $projects->where('category_id', Category::whereName($category)->pluck('id')->first());
+        }
+        else{
+
+            $projects = Project::latest()->get();
         }
 
-        $projects = $projects->get();
-
-        return view('discover', compact('categories', 'projects'));
+        return view('discover', compact('projects'));
 
     }
 

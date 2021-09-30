@@ -56,7 +56,7 @@ class ProjectController extends Controller
             'description'   => 'required',
             'project_image' => 'required|image|mimes:jpeg,png,jpg,svg,webp|max:5048',
             'category'      => 'required|in:' . implode(',', self::$categories),
-            'duration'      => 'required|integer',
+            'duration'      => 'required|integer|max:100|min:1',
             'budget'        => 'required|numeric'
         ]);
 

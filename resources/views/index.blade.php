@@ -1,4 +1,4 @@
-<x-layout title="Home | Crowdfund">
+<x-layout>
 
 	@include('layouts.home-cover')
 

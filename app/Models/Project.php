@@ -6,17 +6,21 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 Use Illuminate\Support\Carbon;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Image;
 
 class Project extends Model
 {
-    use HasFactory;
+    use HasFactory, softDeletes;
+
+    // Always lazy load with these relationship
+    protected $with = ['user', 'category'];
 
     protected $fillable = [
         'title',
         'location',
         'description',
-        'project_image',
+        'image',
         'category_id',
         'duration',
         'budget', 
@@ -27,14 +31,18 @@ class Project extends Model
         'title'         => 'string',
         'location'      => 'string',
         'description'   => 'string',
-        'project_image' => 'string',
+        'image'         => 'string',
         'duration'      => 'integer',
-        'budget'        => 'decimal:8',
-        'amount'        => 'decimal:8',
+        'budget'        => 'decimal:0',
+        'amount'        => 'decimal:0',
     ];
 
+    // Project status
+    const STATUS_DRAFT      = 1;
+    const STATUS_APPROVED   = 2;
+    const STATUS_REJECTED   = 3;
 
-    public function user(){
+    public function owner(): belongsTo{
         return $this->belongsTo(User::class);
     }
 
@@ -42,44 +50,29 @@ class Project extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function progress(){
-        return ceil((($this->amount / $this->budget) * 100)). '%';
+    public function getProgressAttribute(){
+        return Str::of(ceil((($this->attributes['amount'] / $this->attributes['budget']) * 100)))->append('%');
     }
 
-    public function projectImage(){
-        return "/storage/" . $this->project_image;
+    public function getProjectImageAttribute(){
+        return Str::of($this->attributes['image'])->prepend('/storage/');
     }
 
-    // public function projectImageSm(){
-    //     return  Image::make('/storage/' . $this->project_image)->fit(311, 182);
-    // }
-                
-
+    public function getTitleAttribute($value){
+        return Str::of($value)->title();
+    }
 
     public function projectDescription(int $word_count=90){
         return Str::limit($this->description, $word_count);
     }
 
-    public function projectBudget(){
-        return "K" . number_format($this->budget);
+    public function getBudgetAttribute(){
+        return Str::of(number_format($this->attributes['budget']))->prepend('K');
     }
 
-    public function duration(){
-        $date = Carbon::parse($this->created_at);
-        $now = Carbon::now();
 
-        $diff = $date->diffInDays($now);
-        return $this->duration - $diff;
-    }
-
-    public function scopePublished($query)
-    {
-        return $query->where('published', true);
-    }
-
-    public function scopeDraft($query)
-    {
-        return $query->where('published', false);
+    public function getDurationAttribute($value){
+        return $value - Carbon::parse($this->created_at)->diffInDays(now());
     }
 
 }
